@@ -8,6 +8,7 @@ import {
   Smartphone,
 } from "lucide-react";
 import { motion } from "framer-motion";
+
 import GlassBubble from "./GlassBubble";
 
 type ApexHeroProps = {
@@ -95,10 +96,10 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
       />
 
       {/* =========================================================
-          CONTENT
+          HERO CONTENT
       ========================================================== */}
 
-      <div className="mx-auto flex min-h-[calc(100vh-80px)] w-full max-w-7xl items-center px-6 py-24 sm:py-28 lg:px-10 lg:py-20">
+      <div className="mx-auto flex min-h-[calc(100vh-80px)] w-full max-w-7xl items-center px-6 py-28 sm:py-32 lg:px-10 lg:py-24">
         <div className="grid w-full items-center gap-16 lg:grid-cols-[minmax(0,1.02fr)_minmax(460px,0.98fr)] lg:gap-8 xl:gap-14">
           {/* =====================================================
               HERO COPY
@@ -106,6 +107,7 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
 
           <div className="relative z-20 max-w-[760px]">
             {/* Brand signature */}
+
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
@@ -127,7 +129,10 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
               <span className="text-slate-500">Project APEX</span>
             </motion.div>
 
-            {/* Headline */}
+            {/* ===================================================
+                HEADLINE
+            ==================================================== */}
+
             <motion.h1
               id="apex-hero-title"
               initial={{ opacity: 0, y: 30 }}
@@ -137,14 +142,17 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
                 delay: 0.08,
                 ease: heroEase,
               }}
-              className="mt-7 max-w-[820px] text-[clamp(3.5rem,7vw,6.5rem)] font-black leading-[0.95] tracking-[-0.05em] text-[#071A3A]"
+              className="mt-7 max-w-[820px] text-[clamp(3.5rem,7vw,6.5rem)] font-black leading-[0.99] tracking-[-0.05em] text-[#071A3A]"
             >
               <span className="block">Something</span>
 
               <span className="block apex-gradient-text">bigger is coming</span>
             </motion.h1>
 
-            {/* Product hook */}
+            {/* ===================================================
+                PRODUCT HOOK
+            ==================================================== */}
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -153,13 +161,16 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
                 delay: 0.16,
                 ease: heroEase,
               }}
-              className="mt-7 max-w-2xl text-xl font-bold leading-tight tracking-[-0.03em] text-[#071A3A] sm:text-2xl lg:text-3xl"
+              className="mt-8 max-w-2xl text-xl font-bold leading-tight tracking-[-0.03em] text-[#071A3A] sm:mt-9 sm:text-2xl lg:text-3xl"
             >
               Know your phone&apos;s value{" "}
               <span className="text-[#0B5CFF]">before you swap.</span>
             </motion.p>
 
-            {/* Supporting copy */}
+            {/* ===================================================
+                SUPPORTING COPY
+            ==================================================== */}
+
             <motion.p
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
@@ -175,7 +186,10 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
               — before you decide what comes next.
             </motion.p>
 
-            {/* Actions */}
+            {/* ===================================================
+                ACTIONS
+            ==================================================== */}
+
             <motion.div
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
@@ -187,6 +201,7 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
               className="mt-10 flex flex-col gap-3 sm:flex-row"
             >
               {/* Primary CTA */}
+
               <button
                 type="button"
                 onClick={onOpenWaitlist}
@@ -202,6 +217,7 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
               </button>
 
               {/* Secondary CTA */}
+
               <a
                 href="#vision"
                 className="inline-flex cursor-pointer items-center justify-center gap-3 rounded-2xl border border-slate-200/80 bg-white/65 px-7 py-4 text-sm font-bold text-[#0A2D82] shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white"
@@ -210,7 +226,10 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
               </a>
             </motion.div>
 
-            {/* Scroll cue */}
+            {/* ===================================================
+                SCROLL CUE
+            ==================================================== */}
+
             <motion.a
               href="#vision"
               initial={{ opacity: 0 }}
@@ -253,9 +272,10 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
               delay: 0.16,
               ease: heroEase,
             }}
-            className="relative mx-auto w-full max-w-[650px] lg:ml-auto"
+            className="relative mx-auto w-full max-w-[760px] lg:ml-auto lg:translate-x-4 xl:translate-x-7"
           >
             {/* Product atmosphere */}
+
             <div
               aria-hidden="true"
               className="absolute inset-[-8%] rounded-full bg-gradient-to-br from-[#38BDF8]/20 via-[#0B5CFF]/10 to-transparent blur-[80px]"
@@ -270,6 +290,7 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
               className="pointer-events-none absolute inset-[5%] z-0 hidden sm:block"
             >
               {/* Outer scan ring */}
+
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{
@@ -281,6 +302,7 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
               />
 
               {/* Inner scan ring */}
+
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{
@@ -291,12 +313,16 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
                 className="absolute left-1/2 top-1/2 h-[58%] w-[58%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[#38BDF8]/10"
               />
 
-              {/* Crosshair */}
+              {/* Crosshair vertical */}
+
               <div className="absolute left-1/2 top-[11%] h-[78%] w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-[#0B5CFF]/10 to-transparent" />
+
+              {/* Crosshair horizontal */}
 
               <div className="absolute left-[11%] top-1/2 h-px w-[78%] -translate-y-1/2 bg-gradient-to-r from-transparent via-[#0B5CFF]/10 to-transparent" />
 
-              {/* Analysis arc */}
+              {/* Rotating analysis arc */}
+
               <motion.div
                 animate={{
                   rotate: [0, 360],
@@ -333,6 +359,7 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
               />
 
               {/* Scanning beam */}
+
               <motion.div
                 aria-hidden="true"
                 initial={{
@@ -447,7 +474,7 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
             })}
 
             {/* ===================================================
-                APEX VALUE STATE
+                VALUE INTELLIGENCE
             ==================================================== */}
 
             <motion.div
@@ -498,13 +525,19 @@ const ApexHero = ({ onOpenWaitlist }: ApexHeroProps) => {
               </div>
             </motion.div>
 
-            {/* Ambient product glow */}
+            {/* ===================================================
+                AMBIENT PRODUCT GLOW
+            ==================================================== */}
+
             <div
               aria-hidden="true"
               className="absolute bottom-[-4%] left-[13%] right-[13%] h-20 rounded-full bg-[#0B5CFF]/12 blur-[55px]"
             />
 
-            {/* Brand activity signal */}
+            {/* ===================================================
+                BRAND ACTIVITY SIGNAL
+            ==================================================== */}
+
             <motion.div
               aria-hidden="true"
               animate={{
