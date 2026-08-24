@@ -1,23 +1,21 @@
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import type { FormEvent } from "react";
+import type { FC } from "react";
+
 import GlassBubble from "./GlassBubble";
-import GlassCard from "./GlassCard";
 
 const APEX_VIDEO = "https://www.pexels.com/download/video/6754816/";
 
-const ApexEarlyAccess = () => {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+type ApexEarlyAccessProps = {
+  onOpenWaitlist: () => void;
+};
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (!email.trim()) return;
-
-    setSubmitted(true);
-  };
+const ApexEarlyAccess: FC<ApexEarlyAccessProps> = ({ onOpenWaitlist }) => {
+  const benefits = [
+    "First access to launch updates",
+    "Behind-the-scenes product progress",
+    "Early announcements from PR-EL TECH",
+  ];
 
   return (
     <section
@@ -31,21 +29,28 @@ const ApexEarlyAccess = () => {
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
       >
-        <div className="absolute left-[20%] top-[10%] h-[380px] w-[380px] rounded-full bg-[#38BDF8]/7 blur-[120px]" />
+        <div className="absolute left-[18%] top-[8%] h-[380px] w-[380px] rounded-full bg-[#38BDF8]/8 blur-[120px]" />
 
-        <div className="absolute bottom-[-10%] right-[5%] h-[420px] w-[420px] rounded-full bg-[#0B5CFF]/8 blur-[130px]" />
+        <div className="absolute bottom-[-12%] right-[4%] h-[440px] w-[440px] rounded-full bg-[#0B5CFF]/8 blur-[140px]" />
+
+        <div className="absolute bottom-[10%] left-[38%] h-[260px] w-[260px] rounded-full bg-white/80 blur-[100px]" />
       </div>
 
-      <GlassBubble size={130} top="12%" right="7%" opacity={0.16} delay={0} />
+      {/* Floating atmosphere */}
+      <GlassBubble size={130} top="12%" right="7%" opacity={0.12} delay={0} />
 
-      <GlassBubble size={85} bottom="15%" left="5%" opacity={0.18} delay={2} />
+      <GlassBubble size={85} bottom="15%" left="5%" opacity={0.1} delay={2} />
+
+      {/* =========================================================
+          CONTENT
+      ========================================================== */}
 
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid items-center gap-14 lg:grid-cols-[0.92fr_1.08fr] lg:gap-20">
           {/* =====================================================
-              LEFT — MESSAGE + WAITLIST
+              LEFT — MESSAGE
           ====================================================== */}
 
           <motion.div
@@ -62,11 +67,12 @@ const ApexEarlyAccess = () => {
               amount: 0.2,
             }}
             transition={{
-              duration: 0.65,
+              duration: 0.7,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="max-w-xl"
           >
+            {/* Section label */}
             <div className="flex items-center gap-3">
               <span
                 aria-hidden="true"
@@ -78,6 +84,7 @@ const ApexEarlyAccess = () => {
               </span>
             </div>
 
+            {/* Heading */}
             <h2
               id="apex-early-access-title"
               className="mt-5 text-4xl font-black leading-[1.02] tracking-[-0.045em] text-[#071A3A] sm:text-5xl lg:text-6xl"
@@ -86,19 +93,19 @@ const ApexEarlyAccess = () => {
               <span className="apex-gradient-text">APEX opens.</span>
             </h2>
 
+            {/* Description */}
             <p className="mt-6 max-w-lg text-base leading-8 text-slate-500 sm:text-lg">
-              We're building around the technology people already live with —
-              phones, devices, digital experiences, and the value hidden inside
-              them.
+              We&apos;re building around the technology people already live with
+              — phones, devices, digital experiences, and the value hidden
+              inside them.
             </p>
 
-            {/* Early access benefits */}
+            {/* =================================================
+                BENEFITS
+            ================================================== */}
+
             <div className="mt-8 space-y-3">
-              {[
-                "First access to launch updates",
-                "Behind-the-scenes product progress",
-                "Early announcements from PR-EL TECH",
-              ].map((item) => (
+              {benefits.map((item) => (
                 <div
                   key={item}
                   className="flex items-center gap-3 text-sm font-medium text-slate-600"
@@ -115,63 +122,52 @@ const ApexEarlyAccess = () => {
             </div>
 
             {/* =================================================
-                WAITLIST FORM
+                CTA
             ================================================== */}
 
-            {!submitted ? (
-              <form onSubmit={handleSubmit} className="mt-10 max-w-xl">
-                <div className="flex flex-col gap-3 rounded-[22px] border border-white/80 bg-white/65 p-2 shadow-[0_18px_55px_rgba(11,92,255,0.07)] backdrop-blur-xl sm:flex-row">
-                  <label htmlFor="apex-email" className="sr-only">
-                    Email address
-                  </label>
-
-                  <input
-                    id="apex-email"
-                    type="email"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    placeholder="Enter your email address"
-                    required
-                    className="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm font-medium text-[#071A3A] outline-none placeholder:text-slate-400"
-                  />
-
-                  <button
-                    type="submit"
-                    className="group inline-flex items-center justify-center gap-2 rounded-[16px] bg-[#0B5CFF] px-6 py-4 text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0A2D82]"
-                  >
-                    Join Early Access
-                    <ArrowRight
-                      size={17}
-                      aria-hidden="true"
-                      className="transition-transform duration-200 group-hover:translate-x-1"
-                    />
-                  </button>
-                </div>
-
-                <p className="mt-3 text-xs text-slate-400">
-                  No spam. Only meaningful APEX updates.
-                </p>
-              </form>
-            ) : (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 10,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                className="mt-10 flex max-w-xl items-center gap-3 rounded-[18px] border border-[#DCE9AD] bg-[#F4F9E5] px-5 py-4 text-sm font-semibold text-[#0A2D82]"
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 18,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              transition={{
+                duration: 0.65,
+                delay: 0.12,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="mt-10"
+            >
+              <button
+                type="button"
+                onClick={onOpenWaitlist}
+                className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0B5CFF] px-7 py-4 text-sm font-bold text-white shadow-[0_18px_45px_rgba(11,92,255,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#0A2D82] hover:shadow-[0_22px_55px_rgba(11,92,255,0.28)]"
               >
-                <Sparkles size={18} aria-hidden="true" />
-                You're on the APEX early access list.
-              </motion.div>
-            )}
+                <span>Join the APEX Waitlist</span>
+
+                <ArrowRight
+                  size={18}
+                  strokeWidth={2.2}
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </button>
+
+              <p className="mt-3 text-xs text-slate-400">
+                Be among the first to experience what we&apos;re building.
+              </p>
+            </motion.div>
           </motion.div>
 
           {/* =====================================================
-              RIGHT — GADGET VIDEO
+              RIGHT — TECHNOLOGY VIDEO
           ====================================================== */}
 
           <motion.div
@@ -190,7 +186,7 @@ const ApexEarlyAccess = () => {
               amount: 0.18,
             }}
             transition={{
-              duration: 0.75,
+              duration: 0.8,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="relative mx-auto w-full max-w-2xl"
@@ -201,8 +197,9 @@ const ApexEarlyAccess = () => {
               className="absolute inset-[-6%] rounded-[42px] bg-gradient-to-br from-[#38BDF8]/15 via-[#0B5CFF]/10 to-transparent blur-3xl"
             />
 
-            <GlassCard className="relative p-3" hover={false}>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-[#071A3A]">
+            {/* Video frame */}
+            <div className="relative overflow-hidden rounded-[30px] border border-white/70 bg-[#071A3A] shadow-[0_30px_80px_rgba(7,26,58,0.16)]">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <video
                   src={APEX_VIDEO}
                   autoPlay
@@ -216,11 +213,28 @@ const ApexEarlyAccess = () => {
                 {/* Cinematic overlay */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 bg-gradient-to-t from-[#071A3A]/75 via-transparent to-[#071A3A]/10"
+                  className="absolute inset-0 bg-gradient-to-t from-[#071A3A]/80 via-[#071A3A]/5 to-[#071A3A]/10"
                 />
 
-                {/* Video glass label */}
-                <div className="absolute left-5 top-5">
+                {/* Top label */}
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    y: -8,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.35,
+                  }}
+                  className="absolute left-5 top-5"
+                >
                   <div className="flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/90 backdrop-blur-xl">
                     <span
                       aria-hidden="true"
@@ -228,30 +242,69 @@ const ApexEarlyAccess = () => {
                     />
                     APEX / Technology
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Bottom message */}
                 <div className="absolute bottom-5 left-5 right-5">
-                  <div className="rounded-[22px] border border-white/15 bg-white/10 p-5 backdrop-blur-xl">
-                    <p className="text-lg font-bold text-white sm:text-xl">
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      y: 14,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    viewport={{
+                      once: true,
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.5,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="max-w-lg"
+                  >
+                    <p className="text-lg font-bold leading-tight text-white sm:text-xl">
                       Built around the technology you already carry.
                     </p>
 
-                    <p className="mt-2 text-sm leading-6 text-blue-100/70">
+                    <p className="mt-2 max-w-md text-sm leading-6 text-blue-100/70">
                       APEX explores what your devices can become when technology
                       is designed with more intelligence and purpose.
                     </p>
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
-            </GlassCard>
 
-            {/* Floating lime accent */}
+                {/* Scan line */}
+                <motion.div
+                  aria-hidden="true"
+                  initial={{
+                    top: "20%",
+                    opacity: 0,
+                  }}
+                  animate={{
+                    top: ["20%", "80%", "20%"],
+                    opacity: [0, 0.35, 0],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
+                  className="pointer-events-none absolute left-[12%] right-[12%] h-px bg-gradient-to-r from-transparent via-[#38BDF8]/50 to-transparent shadow-[0_0_18px_rgba(56,189,248,0.25)]"
+                />
+              </div>
+            </div>
+
+            {/* Floating intelligence signal */}
             <motion.div
               aria-hidden="true"
               animate={{
                 y: [0, -8, 0],
-                opacity: [0.7, 1, 0.7],
+                opacity: [0.65, 1, 0.65],
+                scale: [0.9, 1, 0.9],
               }}
               transition={{
                 duration: 4,
@@ -260,6 +313,38 @@ const ApexEarlyAccess = () => {
               }}
               className="absolute -right-2 top-[18%] hidden h-3 w-3 rounded-full bg-[#B7D83F] shadow-[0_0_20px_rgba(183,216,63,0.6)] sm:block"
             />
+
+            {/* Small APEX signal */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 8,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.8,
+              }}
+              className="absolute -bottom-5 left-6 hidden sm:block"
+            >
+              <div className="flex items-center gap-2 rounded-full border border-white/70 bg-white/60 px-3 py-2 shadow-[0_12px_35px_rgba(7,26,58,0.08)] backdrop-blur-xl">
+                <Sparkles
+                  size={13}
+                  className="text-[#0B5CFF]"
+                  aria-hidden="true"
+                />
+
+                <span className="text-[9px] font-black uppercase tracking-[0.14em] text-[#0A2D82]">
+                  Intelligence in development
+                </span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
