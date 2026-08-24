@@ -15,7 +15,7 @@ export const APEX_BRAND = {
 
 export const APEX_IMAGES = {
   hero: {
-    src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=85",
+    src: "/heropageimage.png",
     alt: "Modern technology hardware representing Project APEX",
   },
 
