@@ -1,5 +1,6 @@
 import { ArrowRight, Handshake, Lightbulb, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import GlassCard from "./GlassCard";
 
@@ -25,7 +26,7 @@ const collaborationPaths = [
       "Explore sponsorship and investment opportunities for a technology product being built for long-term impact.",
     label: "Explore opportunities",
   },
-];
+] as const;
 
 const reveal = {
   initial: {
@@ -41,7 +42,7 @@ const reveal = {
     amount: 0.15,
   },
   transition: {
-    duration: 0.55,
+    duration: 0.6,
     ease: [0.16, 1, 0.3, 1] as const,
   },
 };
@@ -53,25 +54,29 @@ const ApexBuildWithUs = () => {
       aria-labelledby="apex-build-title"
       className="relative overflow-hidden py-24 sm:py-28 lg:py-32"
     >
-      {/* ======================================================
-          QUIET BACKGROUND
-      ======================================================= */}
+      {/* =========================================================
+          BACKGROUND ATMOSPHERE
+      ========================================================== */}
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-16 -z-10 h-[320px] w-[560px] -translate-x-1/2 rounded-full bg-[#38BDF8]/6 blur-[100px]"
-      />
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      >
+        <div className="absolute left-1/2 top-16 h-[320px] w-[560px] -translate-x-1/2 rounded-full bg-[#38BDF8]/6 blur-[100px]" />
+
+        <div className="absolute bottom-[-20%] right-[-8%] h-[360px] w-[360px] rounded-full bg-[#0B5CFF]/6 blur-[120px]" />
+      </div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        {/* ======================================================
+        {/* =========================================================
             INTRO
-        ======================================================= */}
+        ========================================================== */}
 
         <motion.div {...reveal} className="mx-auto max-w-3xl text-center">
           <div className="flex items-center justify-center gap-3">
             <span
               aria-hidden="true"
-              className="h-1.5 w-1.5 rounded-full bg-[#B7D83F]"
+              className="h-1.5 w-1.5 rounded-full bg-[#B7D83F] shadow-[0_0_10px_rgba(183,216,63,0.45)]"
             />
 
             <span className="text-xs font-black uppercase tracking-[0.2em] text-[#0B5CFF]">
@@ -80,7 +85,7 @@ const ApexBuildWithUs = () => {
 
             <span
               aria-hidden="true"
-              className="h-1.5 w-1.5 rounded-full bg-[#B7D83F]"
+              className="h-1.5 w-1.5 rounded-full bg-[#B7D83F] shadow-[0_0_10px_rgba(183,216,63,0.45)]"
             />
           </div>
 
@@ -88,7 +93,7 @@ const ApexBuildWithUs = () => {
             id="apex-build-title"
             className="mt-5 text-4xl font-black leading-[1.04] tracking-[-0.045em] text-[#071A3A] sm:text-5xl lg:text-6xl"
           >
-            The future shouldn't be built{" "}
+            The future shouldn&apos;t be built{" "}
             <span className="apex-gradient-text">alone.</span>
           </h2>
 
@@ -99,9 +104,9 @@ const ApexBuildWithUs = () => {
           </p>
         </motion.div>
 
-        {/* ======================================================
-            PATHS
-        ======================================================= */}
+        {/* =========================================================
+            COLLABORATION PATHS
+        ========================================================== */}
 
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {collaborationPaths.map((path, index) => {
@@ -123,16 +128,16 @@ const ApexBuildWithUs = () => {
                   amount: 0.12,
                 }}
                 transition={{
-                  duration: 0.5,
-                  delay: index * 0.07,
+                  duration: 0.55,
+                  delay: index * 0.08,
                   ease: [0.16, 1, 0.3, 1],
                 }}
               >
                 <GlassCard hover padding="p-7 sm:p-8" className="group h-full">
-                  {/* Icon */}
+                  {/* Card header */}
                   <div className="flex items-start justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF7C8] text-[#0A2D82] transition-transform duration-200 group-hover:scale-[1.04]">
-                      <Icon size={20} strokeWidth={2.1} />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF7C8] text-[#0A2D82] transition-transform duration-300 group-hover:scale-[1.04]">
+                      <Icon size={20} strokeWidth={2.1} aria-hidden="true" />
                     </div>
 
                     <span
@@ -141,7 +146,7 @@ const ApexBuildWithUs = () => {
                     />
                   </div>
 
-                  {/* Copy */}
+                  {/* Content */}
                   <h3 className="mt-8 text-2xl font-bold tracking-[-0.025em] text-[#071A3A]">
                     {path.title}
                   </h3>
@@ -150,35 +155,32 @@ const ApexBuildWithUs = () => {
                     {path.description}
                   </p>
 
-                  {/* Action */}
-                  <a
-                    href="#partner-with-apex"
-                    className="group/link mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#0B5CFF] transition-colors duration-200 hover:text-[#0A2D82]"
+                  {/* Application link */}
+                  <Link
+                    to="/build-with-apex/apply"
+                    className="group/link mt-7 inline-flex cursor-pointer items-center gap-2 text-sm font-bold text-[#0B5CFF] transition-colors duration-200 hover:text-[#0A2D82]"
                   >
                     <span>{path.label}</span>
 
                     <ArrowRight
                       size={16}
                       aria-hidden="true"
-                      className="transition-transform duration-200 group-hover/link:translate-x-1"
+                      className="transition-transform duration-300 group-hover/link:translate-x-1"
                     />
-                  </a>
+                  </Link>
                 </GlassCard>
               </motion.div>
             );
           })}
         </div>
 
-        {/* ======================================================
-            PARTNERSHIP CTA
-        ======================================================= */}
+        {/* =========================================================
+            STRATEGIC CTA
+        ========================================================== */}
 
         <motion.div {...reveal} className="mt-10">
-          <div
-            id="partner-with-apex"
-            className="relative overflow-hidden rounded-[28px] bg-[#071A3A] px-7 py-9 sm:px-10 sm:py-11 lg:px-12"
-          >
-            {/* Background light */}
+          <div className="relative overflow-hidden rounded-[28px] bg-[#071A3A] px-7 py-9 sm:px-10 sm:py-11 lg:px-12">
+            {/* Background glow */}
             <div
               aria-hidden="true"
               className="absolute right-[-10%] top-[-70%] h-[420px] w-[420px] rounded-full bg-[#0B5CFF]/18 blur-[110px]"
@@ -189,10 +191,14 @@ const ApexBuildWithUs = () => {
               className="absolute bottom-[-70%] left-[25%] h-[360px] w-[360px] rounded-full bg-[#38BDF8]/10 blur-[110px]"
             />
 
+            {/* Content */}
             <div className="relative flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-3xl">
                 <div className="flex items-center gap-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#B7D83F]" />
+                  <span
+                    aria-hidden="true"
+                    className="h-1.5 w-1.5 rounded-full bg-[#B7D83F] shadow-[0_0_10px_rgba(183,216,63,0.55)]"
+                  />
 
                   <span className="text-xs font-black uppercase tracking-[0.2em] text-[#38BDF8]">
                     Strategic Opportunity
@@ -205,23 +211,24 @@ const ApexBuildWithUs = () => {
                 </h3>
 
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-blue-100/70 sm:text-base">
-                  We're opening conversations with collaborators, strategic
-                  partners, sponsors, and investors who want to contribute to
-                  what comes next.
+                  We&apos;re opening conversations with collaborators, strategic
+                  partners, sponsors, investors, and ecosystem players who want
+                  to contribute to what comes next.
                 </p>
               </div>
 
-              <a
-                href="#partner-with-apex"
-                className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 text-sm font-bold text-[#071A3A] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#EAF7C8]"
+              <Link
+                to="/build-with-apex/apply"
+                className="group inline-flex shrink-0 cursor-pointer items-center justify-center gap-3 rounded-2xl bg-white px-6 py-4 text-sm font-bold text-[#071A3A] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#EAF7C8]"
               >
-                Start a conversation
+                <span>Start a conversation</span>
+
                 <ArrowRight
                   size={17}
                   aria-hidden="true"
-                  className="transition-transform duration-200 group-hover:translate-x-1"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </motion.div>
